@@ -61,17 +61,15 @@ function Game() {
       setScore(0)
     }
   }
-  const onClick = (e) => {
+  const onClick = async (e) => {
 
     if (!playersHand.includes(e.target.src) && !isGameOver) {
       setScore(score + 1);
       const newHand = [...playersHand, e.target.src]
       setPlayersHand(newHand)
       if (!isGameOver) {
-        const timer = setTimeout(() => {
-          Shuffle()
-      
-        }, 250);
+          await Shuffle()
+
       } else {
         setIsGameOver(true)
       }
