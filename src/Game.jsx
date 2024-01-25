@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import Modal from "react-modal"
-import { Link, Route } from 'react-router-dom'
-
+import { useNavigate } from 'react-router-dom';
 import A0 from "./imgs/Atu0.png"
 import A1 from "./imgs/Atu1.png"
 import A2 from "./imgs/Atu2.png"
@@ -64,7 +63,7 @@ function Game() {
   }
   const onClick = (e) => {
 
-    if (!playersHand.includes(e.target.src)&& !isGameOver) {
+    if (!playersHand.includes(e.target.src) && !isGameOver) {
       setScore(score + 1);
       const newHand = [...playersHand, e.target.src]
       setPlayersHand(newHand)
@@ -88,6 +87,13 @@ function Game() {
     setPlayersHand([])
     Shuffle()
   };
+
+  const navigateTo = useNavigate();
+
+  const handleYesButtonClick = () => {
+    // Evet butonuna tıklandığında '/' yoluna yönlendir
+    navigateTo('/');
+  };
   return (
     <>
       <div className="scoreBoard">
@@ -99,18 +105,14 @@ function Game() {
           isOpen={isGameOver}
           onRequestClose={handleCloseModal}
           contentLabel="Game Over Modal"
-          shouldCloseOnOverlayClick={false} 
+          shouldCloseOnOverlayClick={false}
           className="modal-custom-style"
         >
           <h2>Game is over</h2>
           <h3>Your score is: {score}</h3>
           <p>Do you want to return Menu?</p>
           <div className="buttonContainer">
-            <button >
-              <Link className="link" to="/">
-                Yes
-              </Link>
-            </button>
+            <button onClick={handleYesButtonClick}>Yes</button>
             <button onClick={handleNoButtonClick}>No</button>
 
           </div>

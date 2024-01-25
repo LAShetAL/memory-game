@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import Modal from "react-modal"
 import { useState } from 'react'
 import { IoMdCloseCircleOutline } from "react-icons/io";
@@ -11,16 +11,20 @@ function Menu() {
     const closeModal = () => {
         setIsModalOpen(false)
     }
+    const navigateTo = useNavigate();
+
+  const handleStart = () => {
+    // Evet butonuna tıklandığında '/' yoluna yönlendir
+    navigateTo('/game');
+  };
     return (
         <>
             <div className="mainContainer">
                 <h1>Tahutis Tarot Memory Game</h1>
                 <div className="buttonContainer">
 
-                    <button >
-                        <Link className="link" to="/game">
-                            Start
-                        </Link>
+                    <button onClick={handleStart}>
+                        Start
                     </button>
                     <button onClick={openModal}>Help</button>
                 </div>
