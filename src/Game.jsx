@@ -68,7 +68,10 @@ function Game() {
       const newHand = [...playersHand, e.target.src]
       setPlayersHand(newHand)
       if (!isGameOver) {
-        Shuffle()
+        const timer = setTimeout(() => {
+          Shuffle()
+      
+        }, 250);
       } else {
         setIsGameOver(true)
       }
