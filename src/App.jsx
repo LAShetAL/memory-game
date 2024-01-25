@@ -5,6 +5,7 @@ import {
 import './App.css'
 import Menu from './Menu'
 import Game from './Game'
+import {Helmet} from "react-helmet";
 
 
 
@@ -23,6 +24,10 @@ function App() {
 
   return (
     <>
+    <Helmet>
+                <meta charSet="utf-8" />
+                <title>Memory Game</title>    
+      </Helmet>
       <RouterProvider router={router}/>
     </>
   )
